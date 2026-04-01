@@ -1,0 +1,1316 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Interactive 3D post-processor for plotting OpenSees masonry wall results">
+      
+      
+      
+      
+        <link rel="prev" href="../../user-guide/elements/">
+      
+      
+        <link rel="next" href="../mpco-format/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Architecture - ops-post</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ops-post" class="md-header__button md-logo" aria-label="ops-post" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ops-post
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/user/ops-post" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ops-post" class="md-nav__button md-logo" aria-label="ops-post" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ops-post
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/user/ops-post" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/controls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Controls & Display
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/elements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Technical Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#module-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-dataclasses-modelpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key dataclasses (model.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#element-registry-ops_elementspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Element registry (ops_elements.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcl-parser-tcl_parserpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TCL parser (tcl_parser.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#render-update-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Render update strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Render update strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-rebuild-_full_rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full rebuild (_full_rebuild)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast-update-_fast_update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fast update (_fast_update)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hdf5-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HDF5 access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gp-sphere-zero-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GP sphere zero mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#displacement-interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displacement interpolation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mpco-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MPCO File Format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../postdata-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Postdata Format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../element-registry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Element Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#module-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-dataclasses-modelpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key dataclasses (model.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#element-registry-ops_elementspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Element registry (ops_elements.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcl-parser-tcl_parserpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TCL parser (tcl_parser.py)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#render-update-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Render update strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Render update strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-rebuild-_full_rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full rebuild (_full_rebuild)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast-update-_fast_update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fast update (_fast_update)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hdf5-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HDF5 access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gp-sphere-zero-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GP sphere zero mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#displacement-interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displacement interpolation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
+<h2 id="module-overview">Module overview<a class="headerlink" href="#module-overview" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>ops_post/
+├── __main__.py          CLI entry point (same-name convention)
+├── tcl_parser.py        TCL model parser + .postdata generator
+├── model.py             Data model (dataclasses)
+├── mpco_reader.py       File I/O (HDF5 + .postdata)
+├── ops_elements.py      Element type registry (61 types)
+├── mesh_builder.py      PyVista mesh construction
+├── result_processor.py  Result extraction + mapping
+├── gui.py               PyQt5 tabbed UI (Results + View), in-place
+│                        mesh updates, persistent HDF5, export
+└── utils.py             Arcball interactor, von Mises, utilities
+</code></pre></div>
+<h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>                         ops-post my_model
+                               |
+                    ┌──────────┴──────────┐
+                    v                     v
+              my_model.tcl          my_model.mpco
+                    |                     |
+                    v                     v
+             tcl_parser.py         mpco_reader.py
+             (parse nodes,         (read HDF5:
+              elements,             nodes, elements,
+              sections,             sections, results)
+              geomTransf)                |
+                    |                    |
+                    v                    |
+         my_model.mpco.postdata         |
+         (local axes, beam              |
+          profiles, elem info)          |
+                    |                    |
+                    └────────┬───────────┘
+                             v
+                         ModelState
+                             |
+              ┌──────────────┼──────────────┐
+              v              v              v
+        MeshBuilder   ResultProcessor   MainWindow
+        (PyVista        (scalar         (Qt + PyVista
+         meshes)         arrays)         viewport)
+</code></pre></div>
+<h2 id="data-flow">Data flow<a class="headerlink" href="#data-flow" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong><code>__main__.py</code></strong> resolves the base name, checks if <code>.postdata</code> needs
+   regeneration, calls <code>tcl_parser.parse_tcl()</code> + <code>write_postdata()</code> if
+   needed.</p>
+</li>
+<li>
+<p><strong><code>tcl_parser.parse_tcl(path)</code></strong> reads the TCL model, following all
+   <code>source</code> commands. Returns a <code>TclModel</code> with nodes, elements, sections,
+   materials, and geomTransf definitions. Element parsing is dispatched
+   by the <code>ops_elements</code> registry -- the element's <code>ElemFamily</code> determines
+   how many nodes to read and what flags to extract.</p>
+</li>
+<li>
+<p><strong><code>tcl_parser.write_postdata(model, path)</code></strong> computes local axes
+   (rotation matrices -&gt; quaternions), derives beam cross-section profiles
+   from section properties, and writes the <code>.mpco.postdata</code> file.</p>
+</li>
+<li>
+<p><strong><code>mpco_reader.read_mpco(path)</code></strong> reads the HDF5 file and the
+   <code>.mpco.postdata</code> companion, returning a <code>ModelState</code>.</p>
+</li>
+<li>
+<p><strong><code>MeshBuilder(model)</code></strong> converts the model into PyVista meshes.</p>
+</li>
+<li>
+<p><strong><code>ResultProcessor(model, builder)</code></strong> extracts per-step scalar data from
+   HDF5 and maps it onto the meshes.</p>
+</li>
+<li>
+<p><strong><code>MainWindow</code></strong> ties it together with a tabbed control panel (Results
+   and View tabs), in-place mesh updates during animation, and export
+   controls. The viewport has a fixed size (1200x800 default, adjustable
+   via View tab spinners). All figure settings apply immediately -- no
+   Apply button.</p>
+</li>
+</ol>
+<h2 id="key-dataclasses-modelpy">Key dataclasses (model.py)<a class="headerlink" href="#key-dataclasses-modelpy" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NodeData</code></td>
+<td>Node IDs, coordinates, ID-to-index map</td>
+</tr>
+<tr>
+<td><code>ElementGroup</code></td>
+<td>One element type: IDs, connectivity, HDF5 key</td>
+</tr>
+<tr>
+<td><code>SectionAssignment</code></td>
+<td>Fiber data, thickness, element-to-section mapping</td>
+</tr>
+<tr>
+<td><code>BeamProfile</code></td>
+<td>2D cross-section vertices for beam visualization</td>
+</tr>
+<tr>
+<td><code>ResultDescriptor</code></td>
+<td>Describes one result (category, name, sub-groups)</td>
+</tr>
+<tr>
+<td><code>ResultSubGroup</code></td>
+<td>One HDF5 data group: elem IDs, GP/fiber/comp counts</td>
+</tr>
+<tr>
+<td><code>StageInfo</code></td>
+<td>Stage index and its step keys</td>
+</tr>
+<tr>
+<td><code>ModelState</code></td>
+<td>Top-level container for the entire model</td>
+</tr>
+</tbody>
+</table>
+<h2 id="element-registry-ops_elementspy">Element registry (ops_elements.py)<a class="headerlink" href="#element-registry-ops_elementspy" title="Permanent link">&para;</a></h2>
+<p>Maps 61 OpenSees element type strings to <code>ElemInfo</code> objects. This single
+registry drives <strong>three</strong> systems:</p>
+<ol>
+<li><strong>TCL parsing</strong>: determines how many nodes to read and which flags
+   to extract (<code>-local</code>, <code>-orient</code>, geomTransf).</li>
+<li><strong>Mesh building</strong>: provides shape functions, GP coordinates, and node
+   counts for surface/extrusion/GP cloud construction.</li>
+<li><strong>Result processing</strong>: provides extrapolation matrices for GP-to-node
+   mapping.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">info</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">(</span><span class="s2">&quot;ASDShellQ4&quot;</span><span class="p">)</span>
+<span class="n">info</span><span class="o">.</span><span class="n">family</span>      <span class="c1"># ElemFamily.SHELL_QUAD</span>
+<span class="n">info</span><span class="o">.</span><span class="n">num_nodes</span>   <span class="c1"># 4</span>
+<span class="n">info</span><span class="o">.</span><span class="n">num_gp</span>      <span class="c1"># 4</span>
+<span class="n">info</span><span class="o">.</span><span class="n">gp_coords</span>   <span class="c1"># (4, 2) array at +/-1/sqrt(3)</span>
+<span class="n">info</span><span class="o">.</span><span class="n">shape_fn</span>    <span class="c1"># shape_q4(xi, eta) -&gt; (4,)</span>
+<span class="n">info</span><span class="o">.</span><span class="n">extrap_fn</span>   <span class="c1"># extrapolation_matrix_q4() -&gt; (4, 4)</span>
+<span class="n">info</span><span class="o">.</span><span class="n">is_surface</span>  <span class="c1"># True</span>
+</code></pre></div>
+<p>Adding a new element type to <code>ELEMENT_REGISTRY</code> automatically handles
+TCL parsing, mesh building, and result display.</p>
+<h2 id="tcl-parser-tcl_parserpy">TCL parser (tcl_parser.py)<a class="headerlink" href="#tcl-parser-tcl_parserpy" title="Permanent link">&para;</a></h2>
+<p>Parses OpenSees TCL commands:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What is extracted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model basic -ndm -ndf</code></td>
+<td>Dimensionality</td>
+</tr>
+<tr>
+<td><code>node</code></td>
+<td>Node ID, coordinates</td>
+</tr>
+<tr>
+<td><code>element</code></td>
+<td>ID, type, node IDs, section tag, -local, -orient, geomTransf</td>
+</tr>
+<tr>
+<td><code>geomTransf</code></td>
+<td>ID, type, vecxz vector</td>
+</tr>
+<tr>
+<td><code>section</code></td>
+<td>ID, type, LayeredShell layers</td>
+</tr>
+<tr>
+<td><code>nDMaterial</code> / <code>uniaxialMaterial</code></td>
+<td>ID, type</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>Follows included files recursively</td>
+</tr>
+</tbody>
+</table>
+<p>Element parsing is <strong>registry-driven</strong>: <code>lookup(elem_type)</code> returns the
+<code>ElemFamily</code>, which determines the parser:</p>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Parser</th>
+<th>Extracts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SHELL_QUAD</code>, <code>SHELL_TRI</code>, <code>QUAD_2D</code>, <code>TRI_2D</code></td>
+<td><code>_parse_surface_element</code></td>
+<td>N nodes + section tag + <code>-local</code></td>
+</tr>
+<tr>
+<td><code>BEAM</code></td>
+<td><code>_parse_beam</code></td>
+<td>2 nodes + geomTransf + inline A/Iy/Iz</td>
+</tr>
+<tr>
+<td><code>TRUSS</code>, <code>LINK</code></td>
+<td><code>_parse_two_node</code></td>
+<td>2 nodes</td>
+</tr>
+<tr>
+<td><code>ZERO_LENGTH</code></td>
+<td><code>_parse_zero_length</code></td>
+<td>2 nodes + <code>-orient</code></td>
+</tr>
+<tr>
+<td>Unknown</td>
+<td><code>_parse_generic_element</code></td>
+<td>Consecutive integer node IDs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="render-update-strategy">Render update strategy<a class="headerlink" href="#render-update-strategy" title="Permanent link">&para;</a></h2>
+<p>The GUI uses two update paths:</p>
+<h3 id="full-rebuild-_full_rebuild">Full rebuild (<code>_full_rebuild</code>)<a class="headerlink" href="#full-rebuild-_full_rebuild" title="Permanent link">&para;</a></h3>
+<p>Triggered by: visibility toggles, colormap change, result/component change,
+grid spacing change.</p>
+<ul>
+<li>Clears the scene.</li>
+<li>Rebuilds all meshes from base geometry + current displacement.</li>
+<li>Stores mesh and actor references in <code>_meshes</code> / <code>_actors</code> dicts.</li>
+</ul>
+<h3 id="fast-update-_fast_update">Fast update (<code>_fast_update</code>)<a class="headerlink" href="#fast-update-_fast_update" title="Permanent link">&para;</a></h3>
+<p>Triggered by: time step change, displacement scale change.</p>
+<ul>
+<li>Updates <code>.points[:]</code> arrays in-place on existing meshes (no clear/add).</li>
+<li>Updates scalar arrays for contour results.</li>
+<li>Only GP spheres are removed and re-added (glyph geometry depends on values).</li>
+</ul>
+<h2 id="hdf5-access">HDF5 access<a class="headerlink" href="#hdf5-access" title="Permanent link">&para;</a></h2>
+<p>A single <code>h5py.File</code> handle is opened in <code>MainWindow.__init__</code> and kept
+for the session (persistent HDF5 handle). All <code>read_step_data()</code> calls
+pass this handle to avoid repeated file open/close. The handle is closed
+in <code>closeEvent</code>.</p>
+<h2 id="gp-sphere-zero-mode">GP sphere zero mode<a class="headerlink" href="#gp-sphere-zero-mode" title="Permanent link">&para;</a></h2>
+<p>When displaying GP spheres, the zero mode controls sphere radius scaling:</p>
+<ul>
+<li><strong>"Zero at 0"</strong>: radius is zero when the value is zero (for signed
+  quantities like stress).</li>
+<li><strong>"Zero at min"</strong>: radius is zero at the minimum value (for damage-like
+  quantities that range from 0 upward).</li>
+</ul>
+<p>This setting is in the View tab under Figure controls and applies
+immediately.</p>
+<h2 id="displacement-interpolation">Displacement interpolation<a class="headerlink" href="#displacement-interpolation" title="Permanent link">&para;</a></h2>
+<p>GP cloud displacement uses vectorized numpy:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Precomputed in build_gauss_point_cloud():</span>
+<span class="n">_gp_node_indices</span>  <span class="c1"># (N_gp, max_nodes) int array</span>
+<span class="n">_gp_weights</span>       <span class="c1"># (N_gp, max_nodes) float array</span>
+
+<span class="c1"># At render time:</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">displacements</span><span class="p">[</span><span class="n">node_indices</span><span class="p">]</span>          <span class="c1"># (N_gp, max_nodes, 3)</span>
+<span class="n">interp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij,ijk-&gt;ik&quot;</span><span class="p">,</span> <span class="n">wts</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="c1"># (N_gp, 3)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "content.code.copy", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
