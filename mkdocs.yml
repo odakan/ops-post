@@ -1,6 +1,6 @@
 site_name: ops-post
 site_description: Interactive 3D post-processor for plotting OpenSees masonry wall results
-repo_url: https://github.com/user/ops-post
+repo_url: https://github.com/odakan/ops-post
 
 theme:
   name: material
