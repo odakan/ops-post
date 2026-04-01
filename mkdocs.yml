@@ -1,0 +1,39 @@
+site_name: ops-post
+site_description: Interactive 3D post-processor for plotting OpenSees masonry wall results
+repo_url: https://github.com/user/ops-post
+
+theme:
+  name: material
+  palette:
+    scheme: default
+    primary: indigo
+    accent: amber
+  features:
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+    - search.highlight
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - User Guide:
+    - Controls & Display: user-guide/controls.md
+    - Results: user-guide/results.md
+    - Supported Elements: user-guide/elements.md
+  - Technical Reference:
+    - Architecture: reference/architecture.md
+    - MPCO File Format: reference/mpco-format.md
+    - Postdata Format: reference/postdata-format.md
+    - Element Registry: reference/element-registry.md
+  - Extending: extending.md
+
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true

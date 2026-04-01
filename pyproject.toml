@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ops-post"
+version = "0.1.0"
+description = "Interactive 3D post-processor for OpenSees .mpco files"
+license = {text = "GPL-3.0-or-later"}
+requires-python = ">=3.8"
+dependencies = [
+    "h5py",
+    "numpy",
+    "scipy",
+    "pyvista",
+    "pyvistaqt",
+    "PyQt5",
+    "imageio[ffmpeg]",
+]
+
+[project.scripts]
+ops-post = "ops_post.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
