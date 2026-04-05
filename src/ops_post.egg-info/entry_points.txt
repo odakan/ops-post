@@ -1,2 +1,0 @@
-[console_scripts]
-ops-post = ops_post.__main__:main
